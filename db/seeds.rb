@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+(0..5).each do |floor_number|
+  puts "floor_number: #{floor_number}"
+  (0..19).each do |room_number|
+    puts "room_number: #{room_number}"
+    next if Room.find_by(room_number: room_number, floor: floor_number)
+
+    Room.find_or_create_by(room_number: room_number, floor: floor_number, occupied: false)
+  end
+end
